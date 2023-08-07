@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: todo
+      MYSQL_DATABASE: todo_db
+      MYSQL_USER: todo_user
+      MYSQL_PASSWORD: todo
+    volumes:
+      - todo-data:/var/lib/mysql
+volumes:
+  todo-data:
