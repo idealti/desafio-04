@@ -30,6 +30,13 @@ if (isset($_SESSION['user_id'])) {
         <div class="row justify-content-center">
             <div class="col-md-4 bg-light p-4 rounded">
                 <h2 class="mb-4 text-center">Login</h2>
+                <!-- Verifica se há uma mensagem de erro na URL -->
+                <?php if (isset($_GET['error']) && $_GET['error'] == 1) { ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Usuário não encontrado, verifique o e-mail e a senha e tente novamente.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
                 <form action="process_login.php" method="post" onsubmit="return validateForm();">
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>

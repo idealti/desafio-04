@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Senha incorreta.";
         }
     } else {
-        echo "Usuário não encontrado.";
+        header("Location: login.php?error=1"); // Redirect to login page with an error message
+        exit();
     }
 
     $conn->close();

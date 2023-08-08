@@ -20,9 +20,18 @@
 
 <body>
     <div class="container register-container">
+
         <div class="row justify-content-center">
+
             <div class="col-md-4 bg-light p-4 rounded">
                 <h2 class="mb-4 text-center">Registro de Usuário</h2>
+                <!-- Verifica se há uma mensagem de erro na URL -->
+                <?php if (isset($_GET['error']) && $_GET['error'] == 1) { ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Erro ao registrar o usuário: O email já está em uso.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
                 <form action="process_register.php" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
