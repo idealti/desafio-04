@@ -1,99 +1,106 @@
-# Desafio-04: Desenvolvimento de um Sistema de Gerenciamento de Tarefas usando Docker Compose
+# Projeto de Gerenciamento de Tarefas - README
 
-### Objetivo: Criar um sistema simples de gerenciamento de tarefas (To-Do List) usando PHP, HTML, CSS, MySQL e Docker Compose.
+Este é um projeto de gerenciamento de tarefas desenvolvido em PHP e MySQL, utilizando Docker para criação de ambientes de desenvolvimento. O projeto permite adicionar, listar e gerenciar tarefas, bem como realizar login e registro de usuários.
 
-### Requisitos:
+## Requisitos
 
-1. Crie um diretório chamado "todo-app" e coloque todos os arquivos do projeto dentro desse diretório.
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-2. Crie um arquivo chamado "docker-compose.yml" no diretório raiz do projeto, com as seguintes configurações:
+- Docker: [Instalação do Docker](https://docs.docker.com/get-docker/)
+- Docker Compose: [Instalação do Docker Compose](https://docs.docker.com/compose/install/)
+
+## Configuração
+
+1. Clone este repositório para a sua máquina:
+
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+```
+
+2. Navegue até o diretório do projeto:
+
+```bash
+cd nome-do-diretorio
+```
+
+## Configuração do Apache
+
+Dentro do diretório do projeto, crie um diretório chamado `apache-config`. Este diretório será usado para armazenar o arquivo de configuração do Apache.
+
+1. Crie o diretório `apache-config`:
+
+```bash
+mkdir apache-config
+```
+
+2. Dentro do diretório recém-criado `apache-config`, crie um arquivo chamado `000-default.conf` com as configurações do site. Você pode usar o seguinte exemplo como base:
+
+```apacheconf
+<VirtualHost *:80>
+    DocumentRoot /var/www/html/public
+    ErrorLog /var/log/apache2/error.log
+    CustomLog /var/log/apache2/access.log combined
+</VirtualHost>
+```
+
+Certifique-se de substituir `/var/www/html/public` pelo caminho correto até a pasta `public` do seu projeto.
+
+3. Volte ao arquivo `docker-compose.yml` e adicione o volume que faz referência ao arquivo de configuração:
 
 ```yaml
 version: '3'
 services:
   web:
     image: php:apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
     volumes:
       - ./src:/var/www/html
+      - ./apache-config/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - db
   db:
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: example_root_password
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: todo_db
-      MYSQL_USER: todo_user
-      MYSQL_PASSWORD: example_user_password
+      MYSQL_USER: todo_db
+      MYSQL_PASSWORD: 
     volumes:
       - todo-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
 volumes:
   todo-data:
 ```
 
-3. Crie uma pasta chamada "src" dentro do diretório "todo-app". Todos os arquivos PHP, HTML e CSS do projeto devem ser colocados dentro desta pasta.
+Agora, ao executar o projeto, o Apache utilizará a configuração do arquivo `000-default.conf` para direcionar as solicitações para a pasta `public` do seu projeto.
 
-4. Implemente o sistema de gerenciamento de tarefas dentro da pasta "src" de acordo com os requisitos mencionados anteriormente.
+## Executando o Projeto
 
-5. Certifique-se de que o arquivo de conexão com o banco de dados (por exemplo, "connection.php") esteja configurado para se conectar ao contêiner do banco de dados. Use as seguintes configurações de conexão:
+1. Execute o Docker Compose para criar e iniciar os containers:
 
-   ```php
-   <?php
-   $host = 'db';
-   $user = 'todo_user';
-   $password = 'example_user_password';
-   $database = 'todo_db';
-   
-   $conn = new mysqli($host, $user, $password, $database);
-   if ($conn->connect_error) {
-       die('Connection failed: ' . $conn->connect_error);
-   }
-   ```
+```bash
+docker-compose up -d
+```
 
-6. Certifique-se de que o arquivo "index.php" (ou página principal) esteja configurado como ponto de entrada do sistema e exiba a lista de tarefas e formulários para adicionar e editar tarefas.
+2. Acesse a aplicação em seu navegador web através de `http://localhost:8080`.
 
-7. Teste o sistema localmente usando Docker Compose, execute o seguinte comando no terminal a partir do diretório "todo-app":
+## Banco de Dados
 
-   ```
-   docker-compose up
-   ```
+O banco de dados está configurado usando o Docker Compose, com as credenciais especificadas no arquivo `docker-compose.yml`. Tem um arquivo com o código de criação das tabelas no diretório `dump`.
 
-   Isso criará os contêineres para o PHP com Apache e o banco de dados MariaDB. O sistema estará acessível em http://localhost:8080.
+## Validação de Formulário
 
-8. Página de registro de usuários (campos: nome, e-mail e senha).
+A validação de formulário foi implementada no arquivo HTML utilizando JavaScript para garantir que os campos estejam preenchidos antes do envio.
 
-9. Página de login para permitir que os usuários acessem o sistema.
+## Contribuição
 
-10. Página principal após o login, onde o usuário pode adicionar, editar, excluir e marcar tarefas como concluídas.
+Sinta-se à vontade para contribuir com melhorias ou correções para este projeto. Abra uma issue para discutir novas funcionalidades ou problemas encontrados.
 
-11. As tarefas devem ter pelo menos os seguintes campos: título, descrição, data de criação e status (pendente/concluída).
+---
 
-12. As tarefas devem ser exibidas em uma lista, e o usuário deve poder ordenar a lista por data de criação ou por status.
-
-13. O sistema deve ter validação de formulário tanto no registro quanto no login.
-
-14. Use MariaDb para armazenar os dados das tarefas e dos usuários.
-
-15. O sistema não precisa ter autenticação de usuário por meio de e-mail. Basta permitir que um usuário registrado faça login usando usuário e senha.
-
-16. O layout não precisa ser complexo, mas deve ser responsivo e ter uma aparência agradável.
-
-### Observações:
-
-- Certifique-se de que as configurações de conexão do banco de dados e do Docker Compose estejam corretas.
-- Verifique se o sistema está funcionando corretamente antes de enviar o projeto.
-- Você pode aplicar as mudanças que julgar necessário, apenas inclua as justificativas no seu **README.md**
-- Você pode utilizar **Symfony** com framework ou nos surpreender desenvolvendo com php puro.
-- Use o bootstrap se quiser.
-- Adoramos **easter eggs**;
-- Duração do teste: Recomendamos que você utilize aproximadamente 4 a 6 horas para completar o teste. No entanto, o limite de tempo não é estritamente aplicado.
-
-### Instruções adicionais:
-
-1. Faça um fork deste repositório e desenvolva o projeto nele.
-2. Ao concluir, crie um Pull Request para a branch principal.
-3. Inclua um arquivo README.md com instruções claras sobre como executar o projeto usando o Docker Compose e qualquer outra informação relevante.
-4. Certifique-se de que o projeto está funcionando corretamente antes de enviar o Pull Request.
-
-Boa sorte! Estamos ansiosos para ver suas habilidades de desenvolvimento e conhecimento em Docker em ação!
+Lembre-se de substituir os placeholders como `seu-usuario`, `seu-repositorio`, `nome-do-diretorio` e outras informações pertinentes com os detalhes específicos do seu projeto.
