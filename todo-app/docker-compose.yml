@@ -20,5 +20,6 @@ services:
       MYSQL_PASSWORD: todo
     volumes:
       - todo-data:/var/lib/mysql
+      - ./setup_db.sql:/docker-entrypoint-initdb.d/setup_db.sql
 volumes:
   todo-data:
