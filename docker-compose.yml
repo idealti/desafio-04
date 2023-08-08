@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    image: php:apache
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./apache-config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo_db
+      MYSQL_USER: todo_db
+      MYSQL_PASSWORD: G*yS3^54EY6d
+    volumes:
+      - todo-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  todo-data:
