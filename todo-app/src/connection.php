@@ -32,10 +32,11 @@ if ($conn->query($sqlCreateUsersTable) === FALSE) {
 $sqlCreateTasksTable = "CREATE TABLE IF NOT EXISTS tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_name VARCHAR(255) NOT NULL,
-    status TINYINT DEFAULT 0,
+    status VARCHAR(255) NOT NULL DEFAULT 'not_completed',
     completion_date DATE,
     description TEXT,
     user_id INT,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
 if ($conn->query($sqlCreateTasksTable) === FALSE) {
