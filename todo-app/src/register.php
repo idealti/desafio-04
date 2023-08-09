@@ -1,7 +1,6 @@
 <?php
 
 require "connection.php";
-require "Model/User.php";
 require "Repository/UserRepository.php";
 
 if (isset($_POST['register'])){
@@ -22,7 +21,7 @@ if (isset($_POST['register'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>Register</title>
+    <title>Registre-se</title>
 </head>
 
 <body>
@@ -37,13 +36,13 @@ if (isset($_POST['register'])){
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="register.php">Registre-se</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

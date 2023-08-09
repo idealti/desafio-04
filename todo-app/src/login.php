@@ -45,24 +45,21 @@ if (isset($_POST['login'])) {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        </li>
+                        <li class=" nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="register.php">Registre-se</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <main class="container-fluid p-3">
-        <h2 class="text-center mb-4">Crie agora sua conta</h2>
+        <h2 class="text-center mb-4">Bem vindo(a) de volta</h2>
         <form method="post" action="login.php" class="container">
             <div class="mb-3">
                 <label for="email" class="form-label">Endereço de email</label>
@@ -76,7 +73,6 @@ if (isset($_POST['login'])) {
             </div>
             <button name="login" type="submit" class="btn btn-primary w-100">Entrar</button>
         </form>
-
     </main>
 
 
