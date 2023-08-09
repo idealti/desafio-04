@@ -87,4 +87,12 @@ class UserRepository
 
         return null;
     }
+
+    public function removeToken($token)
+    {
+        $sql = "UPDATE users SET token = NULL WHERE token = ?";
+        $statement = $this->mysqli->prepare($sql);
+        $statement->bind_param("s", $token);
+        $statement->execute();
+    }
 }
