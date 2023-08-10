@@ -19,12 +19,26 @@ use Symfony\Component\Security\Core\Security;
 class TaskController extends AbstractController
 {
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
-    public function index(TaskRepository $taskRepository): Response
+    public function index(Request $request, TaskRepository $taskRepository, Security $security): Response
     {
+        $user = $security->getUser();
+        $order = $request->query->get('order', 'createdAt');
+
+        if (!in_array($order, ['status', 'createdAt'])) {
+            $order = 'status';
+        }
+
+        if (array_key_exists('ROLE_ADMIN', $user?->getRoles())) {
+            $tasks = $taskRepository->findBy([], [$order => 'ASC']);
+        } else {
+            $tasks = $taskRepository->findBy(["author" => $user], [$order => 'ASC']);
+        }
+
         return $this->render('task/index.html.twig', [
-            'tasks' => $taskRepository->findAll(),
+            'tasks' => $tasks,
         ]);
     }
+
 
     #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, Security $security): Response

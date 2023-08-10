@@ -23,12 +23,21 @@ Edit Task: Editar tarefa
 Todo List: Listar tarefas
 edit: Editar
 Edit: Editar
+Save: Salvar
 Actions: Ações
 show: mostrar
 Create new: Criar nova tarefa
+Create new Task: Criar nova tarefa
 New Task: Criar tarefa
+No tasks found: Nenhuma tarefa encontrada
 Register: Registrar
 Title: Título
 Description: Descrição
 CreatedAt: Criado em
 UpdatedAt: Atualizado em
+pendent: Pendente
+done: Concluída
+Are you sure you want to finish this item?: Você tem certeza que gostaria de finalizar essa tarefa?
+Order By: Ordenar por
+Order by Status: Ordenar por status
+Order by Created Date: Ordenar por data de criação
