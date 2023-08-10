@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_row(form.title, {'label_attr': {'class': 'text-light'}}) }}
+    {{ form_row(form.description, {'label_attr': {'class': 'text-light'}}) }}
+    {{ form_row(form.status, {'label_attr': {'class': 'text-light'}}) }}
+    {% if 'ROLE_ADMIN' in app.user.roles %}
+        {{ form_row(form.author, {'label_attr': {'class': 'text-light'}}) }}
+    {% endif %}
+<button class="btn btn-light my-2">{{ button_label|default('Save'|trans) }}</button>
+{{ form_end(form) }}

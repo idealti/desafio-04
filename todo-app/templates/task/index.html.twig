@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+
+
+{% block body %}
+    <h1 class="title text-light">{{ 'Task List'|trans }}</h1>
+    <div class="mb-3">
+        <label for="order" class="form-label text-light">{{ 'Order By'|trans }}</label>
+        <select class="form-select" id="order" name="order">
+            <option value="" selected>Selecione</option>
+            <option value="createdAt">{{ 'Order by Created Date'|trans }}</option>
+            <option value="status">{{ 'Order by Status'|trans }}</option>
+        </select>
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'Id'|trans }}</th>
+            <th>{{ 'Title'|trans }}</th>
+            <th>{{ 'Description'|trans }}</th>
+            <th>{{ 'Status'|trans }}</th>
+            <th>{{ 'CreatedAt'|trans }}</th>
+            <th>{{ 'UpdatedAt'|trans }}</th>
+            <th>{{ 'Actions'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                {% if task.status == 'pendente' %}
+                    <td>
+                        <a href="{{ path('app_task_done', {'id': task.id}) }}"
+                           class="badge bg-warning text-decoration-none"
+                           onclick="return confirm('Você tem certeza que gostaria de finalizar essa tarefa?');">{{ 'pendent'|trans|capitalize }}</a>
+                    </td>
+                {% else %}
+                    <td>
+                        <span class="badge bg-success">{{ 'done'|trans|capitalize }}</span>
+                    </td>
+                {% endif %}
+                <td>{{ task.createdAt ? task.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ task.updatedAt ? task.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-light btn-sm" role="button"
+                       href="{{ path('app_task_show', {'id': task.id}) }}">{{ 'show'|trans|capitalize }}</a>
+                    <a class="btn btn-light btn-sm" role="button"
+                       href="{{ path('app_task_edit', {'id': task.id}) }}">{{ 'edit'|trans|capitalize }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">{{ 'No tasks found'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-light" href="{{ path('app_task_new') }}">{{ 'Create new'|trans }}</a>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const orderSelect = document.getElementById('order');
+        orderSelect.addEventListener('change', function () {
+          const selectedValue = this.value;
+          window.location.href = `{{ path('app_task_index') }}?order=${selectedValue}`;
+        });
+      });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Edit Task'|trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-light">{{ 'Edit Task'|trans }}</h1>
+
+    {{ include('task/_form.html.twig', {'button_label': 'Update'|trans}) }}
+
+    <a class="btn btn-outline-light" href="{{ path('app_task_index') }}">{{ 'Back to list'|trans }}</a>
+
+    {{ include('task/_delete_form.html.twig') }}
+{% endblock %}

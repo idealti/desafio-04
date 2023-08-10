@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block body %}
+    <h1 class="text-light">{{ 'Create new Task'|trans }}</h1>
+
+    {{ include('task/_form.html.twig') }}
+
+    <a class="btn btn-outline-light" href="{{ path('app_task_index') }}">{{ 'Back to list'|trans }}</a>
+{% endblock %}
