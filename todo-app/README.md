@@ -20,7 +20,7 @@
 - Foi preciso alterar algumas partes do Docker para poder rodar corretamente o projeto.
 
 ### 🎲 Rodando o projeto
-<p align="center">Foi realizado o deploy na Vercel, mas com o endpoint voltado para "http://localhost:8000" pois é a porta que a Api tá configurada para rodar.</p>
+<p align="center">Endpoint voltado para "http://localhost:8000" pois é a porta que está configurada para rodar.</p>
 
 ```bash
 # Clone este repositório
