@@ -1,0 +1,34 @@
+messages:
+    Please enter a username.: Por favor, insira um nome de usuário.
+    Please enter an email address.: Por favor, insira um endereço de e-mail.
+    Please enter a valid email address.: Por favor, insira um endereço de e-mail válido.
+    You must agree to our terms.: Você deve concordar com os nossos termos.
+    Please enter a password.: Por favor, insira uma senha.
+    Your password should be at least {{ limit }} characters.: Sua senha deve ter pelo menos {{ limit }} caracteres.
+    Your password cannot be longer than {{ limit }} characters.: Sua senha não pode ter mais que {{ limit }} caracteres.
+    There is already an account with this username.: Este usuário não está disponível.
+    There is already an account with this email.: Este email não está disponível.
+form:
+    username: Nome de Usuário
+    email: Endereço de E-mail
+    Password: Senha
+    Agree Terms: Concordar com os termos
+    Register: Registrar
+    Login: Logar
+Login Todo-List: Login Todo-List
+Update: Atualizar
+Back to list: Voltar para a lista
+Delete: Apagar
+Edit Task: Editar tarefa
+Todo List: Listar tarefas
+edit: Editar
+Edit: Editar
+Actions: Ações
+show: mostrar
+Create new: Criar nova tarefa
+New Task: Criar tarefa
+Register: Registrar
+Title: Título
+Description: Descrição
+CreatedAt: Criado em
+UpdatedAt: Atualizado em

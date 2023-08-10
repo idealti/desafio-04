@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'form.Register'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .registration-container {
+            max-width: 400px;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="registration-container">
+        <h1>{{ 'form.Register'|trans }}</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+        <div class="mb-3">
+            <label class="form-label" for="{{ registrationForm.username.vars.id }}">
+                {{ 'form.username'|trans }}
+            </label>
+            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ registrationForm.email.vars.id }}">
+                {{ 'form.email'|trans }}
+            </label>
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ registrationForm.plainPassword.vars.id }}">
+                {{ 'form.Password'|trans }}
+            </label>
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3 form-check">
+            {{ form_row(registrationForm.agreeTerms, {'label': 'form.Agree Terms'|trans}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">{{ 'form.Register'|trans }}</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

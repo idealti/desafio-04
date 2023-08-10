@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Login Todo-List'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .login-container {
+            max-width: 400px;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: #464646;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+
+        .login-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="login-container">
+        <h1>{{ 'Login Todo-List'|trans }}</h1>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path('app_login') }}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">{{ 'form.username'|trans }}:</label>
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">{{ 'form.Password'|trans }}:</label>
+                <input type="password" class="form-control" id="password" name="_password">
+            </div>
+
+            <input type="hidden" name="_target_path" value="/task">
+
+            <button type="submit" class="btn btn-light align-items-center">{{ 'form.Login'|trans }}</button>
+        </form>
+    </div>
+{% endblock %}

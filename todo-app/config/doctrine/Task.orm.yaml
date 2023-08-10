@@ -1,0 +1,4 @@
+App\Entity\Task:
+    type: entity
+    lifecycleCallbacks:
+        prePersist: [ 'setCreatedAtValue' ]
