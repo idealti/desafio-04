@@ -1,0 +1,16 @@
+{
+    "name": "jobs/todo-app",
+    "autoload": {
+        "psr-4": {
+            "Jobs\\TodoApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Monalisa Menezes"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^5.3"
+    }
+}
