@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    container_name: todo-app
+    build:
+      context: .
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8888:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/apache:/etc/apache2/sites-available
+    depends_on:
+      - db
+  db:
+    container_name: todo-db
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./docker/db:/docker-entrypoint-initdb.d
+volumes:
+  todo-data:

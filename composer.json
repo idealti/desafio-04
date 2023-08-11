@@ -1,0 +1,20 @@
+{
+  "name": "andredss99/todo-app",
+  "description": "Aplicação desenvolvida como desafio técnico para a vaga de Desenvolvedor PHP na Ideal Tecnologia",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "andre",
+      "email": "andresousa808@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-mysqli": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "TodoApp\\": "src/"
+    }
+  }
+}
